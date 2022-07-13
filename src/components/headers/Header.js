@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   const value = useContext(GlobalState);
-
   console.log(value);
   return (
     <header>
@@ -26,14 +25,17 @@ function Header() {
         <li>
           <Link to="/login">Login / Register </Link>
         </li>
-        <li>
+        <li className="menu">
           <CloseIcon />
         </li>
       </ul>
-      <div className="cart-icon">
-        <span>0</span>
-        <ShoppingCartIcon />
-      </div>
+
+      <Link to="/cart">
+        <div className="cart-icon">
+          <span>0</span>
+          <ShoppingCartIcon />
+        </div>
+      </Link>
     </header>
   );
 }
