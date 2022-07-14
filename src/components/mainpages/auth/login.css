@@ -1,0 +1,14 @@
+.login-page {
+  max-width: 500px;
+  border: 2px solid rgb(3, 165, 206);
+  border-radius: 5px;
+  padding: 3px;
+  margin: 50px auto;
+}
+
+.login-page form .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}

@@ -11,11 +11,8 @@ function DetailProduct() {
 
   useEffect(() => {
     if (params.id) {
-      products.forEach((product) => {
-        if (product._id === params.id) {
-          setDetailProduct(product);
-        }
-      });
+      const product = products.find((product) => product._id === params.id);
+      setDetailProduct(product);
     }
   }, [params.id, products]);
 

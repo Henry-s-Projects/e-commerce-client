@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   const value = useContext(GlobalState);
-  console.log(value);
   return (
     <header>
       <div className="menu">

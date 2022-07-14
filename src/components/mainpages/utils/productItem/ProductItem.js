@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ButtonRender from './ButtonRender';
 
 function ProductItem({ product }) {
-  console.log(product.images.url);
   return (
     <div className="product_card">
       <img src={product.images.url} alt="product img" />
@@ -12,14 +12,7 @@ function ProductItem({ product }) {
         <p>{product.description}</p>
       </div>
 
-      <div className="row_btn">
-        <Link id="btn_buy" to="/#!">
-          Buy
-        </Link>
-        <Link id="btn_view" to={`/detail/${product._id}`}>
-          View
-        </Link>
-      </div>
+      <ButtonRender product={product} />
     </div>
   );
 }
