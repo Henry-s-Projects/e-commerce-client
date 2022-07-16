@@ -4,10 +4,36 @@ import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL + 'user/getInfo';
 
-function GetUser() {
+function GetUser(token) {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const token = localStorage.getItem('token');
+  const [cart, setCart] = useState([]);
+
+  const addCart = async (product) => {
+    console.log(cart);
+
+    if (!isLogged) {
+      toast.warn('You must be logged in to add to cart');
+      return;
+    }
+
+    const check = cart.every((item) => item._id !== product._id);
+
+    if (check) {
+      setCart([...cart, { ...product, quantity: 1 }]);
+      toast.success('Product added to cart');
+
+      await axios.patch(
+        process.env.REACT_APP_API_URL + 'user/addCart',
+        { cart: [...cart, { ...product, quantity: 1 }] },
+        { headers: { Authorization: token } },
+        { withCredentials: true }
+      );
+    } else {
+      toast.warn('Product already in cart');
+      return;
+    }
+  };
 
   useEffect(() => {
     if (token) {
@@ -19,7 +45,12 @@ function GetUser() {
             { withCredentials: true }
           );
 
-          console.log(res);
+          setIsLogged(true);
+          res.data.payload.role === 'admin'
+            ? setIsAdmin(true)
+            : setIsAdmin(false);
+
+          setCart(res.data.payload.cart);
         } catch (error) {
           toast.error(error.response.data.msg);
         }
@@ -31,6 +62,8 @@ function GetUser() {
   return {
     isLogged: [isLogged, setIsLogged],
     isAdmin: [isAdmin, setIsAdmin],
+    cart: [cart, setCart],
+    addCart: addCart,
   };
 }
 

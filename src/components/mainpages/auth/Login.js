@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Typography } from '@mui/material';
 
@@ -88,7 +88,6 @@ function Login() {
           </Link>
         </div>
       </form>
-      <ToastContainer />
     </div>
   );
 }
