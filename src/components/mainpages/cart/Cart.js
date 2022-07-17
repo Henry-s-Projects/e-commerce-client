@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import axios from 'axios';
 import PaypalButton from './PaypalButton';
+import { toast } from 'react-toastify';
 
 function Cart() {
   const state = useContext(GlobalState);
@@ -19,6 +20,7 @@ function Cart() {
     product_id: '',
   });
   const [token] = state.token;
+  const [callback, setCallback] = state.userAPI.callback;
 
   const handleClickOpen = (id) => {
     setOpen({ status: true, product_id: id });
@@ -40,7 +42,7 @@ function Cart() {
     getTotal();
   }, [cart]);
 
-  const addToCart = async () => {
+  const addToCart = async (cart) => {
     await axios.patch(
       process.env.REACT_APP_API_URL + 'user/addCart',
       { cart },
@@ -60,7 +62,7 @@ function Cart() {
       }
     });
     setCart([...cart]);
-    addToCart();
+    addToCart(cart);
   };
 
   const decrement = (id) => {
@@ -70,7 +72,7 @@ function Cart() {
       }
     });
     setCart([...cart]);
-    addToCart();
+    addToCart(cart);
   };
 
   const removeProduct = () => {
@@ -81,11 +83,31 @@ function Cart() {
     });
     setCart([...cart]);
     setOpen({ status: false, product_id: '' });
-    addToCart();
+    addToCart(cart);
   };
 
   const tranSuccess = async (payment) => {
-    console.log(payment);
+    const { paymentID, address } = payment;
+
+    await axios.post(
+      process.env.REACT_APP_API_URL + 'payment',
+      {
+        paymentID,
+        address,
+        cart,
+      },
+      {
+        headers: { Authorization: token },
+      },
+      {
+        withCredentials: true,
+      }
+    );
+
+    setCart([]);
+    addToCart([]);
+    setCallback(!callback);
+    toast.success('Payment Successful');
   };
 
   if (cart.length === 0) {
