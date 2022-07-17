@@ -24,9 +24,9 @@ function Products() {
       </div>
       {products.length === 0 && (
         <Box
-          sx={{ alignItems: 'center', paddingLeft: '50%', paddingTop: '10px' }}
+          sx={{ alignItems: 'center', paddingLeft: '46%', paddingTop: '50px' }}
         >
-          <CircularProgress />
+          <CircularProgress size={'8rem'} color={'inherit'} />
         </Box>
       )}
     </>

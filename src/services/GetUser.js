@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -10,8 +10,6 @@ function GetUser(token) {
   const [cart, setCart] = useState([]);
 
   const addCart = async (product) => {
-    console.log(cart);
-
     if (!isLogged) {
       toast.warn('You must be logged in to add to cart');
       return;

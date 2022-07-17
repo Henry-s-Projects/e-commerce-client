@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { GlobalState } from '../../../GlobalState';
@@ -12,7 +13,9 @@ function DetailProduct() {
   useEffect(() => {
     if (params.id) {
       const product = products.find((product) => product._id === params.id);
-      setDetailProduct(product);
+      if (typeof product !== 'undefined') {
+        setDetailProduct(product);
+      }
     }
   }, [params.id, products]);
 
@@ -27,7 +30,9 @@ function DetailProduct() {
             <h2>{detailProduct.title}</h2>
             <h6>#id: {detailProduct.product_id}</h6>
           </div>
-          <span>$ {detailProduct.price}</span>
+          <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+            $ {detailProduct.price}
+          </Typography>
           <p>{detailProduct.description}</p>
           <p>{detailProduct.content}</p>
           <p>Sold: {detailProduct.sold}</p>

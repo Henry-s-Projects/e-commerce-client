@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { GlobalState } from '../../GlobalState';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -10,15 +10,14 @@ const API_URL = process.env.REACT_APP_API_URL + 'user/logout';
 
 function Header() {
   const state = useContext(GlobalState);
-  const [isLogged, setIsLogged] = state.userAPI.isLogged;
-  const [isAdmin, setIsAdmin] = state.userAPI.isAdmin;
+  const [isLogged] = state.userAPI.isLogged;
+  const [isAdmin] = state.userAPI.isAdmin;
   const [cart] = state.userAPI.cart;
 
   const logoutUser = async () => {
     await axios.get(API_URL, { withCredentials: true });
     localStorage.clear();
-    setIsAdmin(false);
-    setIsLogged(false);
+    window.location.href = '/';
   };
 
   const adminRouter = () => {
@@ -77,12 +76,14 @@ function Header() {
         </li>
       </ul>
 
-      <Link to="/cart">
-        <div className="cart-icon">
-          <span>{cart.length}</span>
-          <ShoppingCartIcon />
-        </div>
-      </Link>
+      {!isAdmin && (
+        <Link to="/cart">
+          <div className="cart-icon">
+            <span>{cart.length}</span>
+            <ShoppingCartIcon />
+          </div>
+        </Link>
+      )}
     </header>
   );
 }

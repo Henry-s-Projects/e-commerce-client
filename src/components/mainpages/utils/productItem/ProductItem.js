@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ButtonRender from './ButtonRender';
 
 function ProductItem({ product, isAdmin }) {
