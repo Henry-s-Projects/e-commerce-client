@@ -10,7 +10,7 @@ function ButtonRender({ product }) {
     <div className="row_btn">
       {isAdmin ? (
         <>
-          <Link id="btn_buy" to="/#!">
+          <Link id="btn_buy" to="#!">
             Delete
           </Link>
           <Link id="btn_view" to={`/edit_product/${product._id}`}>
@@ -19,7 +19,7 @@ function ButtonRender({ product }) {
         </>
       ) : (
         <>
-          <Link id="btn_buy" to="/#!" onClick={() => addCart(product)}>
+          <Link id="btn_buy" to="#!" onClick={() => addCart(product)}>
             Buy
           </Link>
           <Link id="btn_view" to={`/detail/${product._id}`}>
