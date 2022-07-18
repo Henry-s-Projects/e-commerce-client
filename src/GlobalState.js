@@ -11,7 +11,11 @@ export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
 
   const refreshToken = async () => {
-    const res = await axios.get(API_URL, { withCredentials: true });
+    const res = await axios.get(
+      API_URL,
+      { headers: { 'Access-Control-Allow-Origin': '*' } },
+      { withCredentials: true }
+    );
     setToken(res.data.accessToken);
   };
 
