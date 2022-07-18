@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "007ef24a95834c96db31",
+    "revision": "3988848686c5c11087f4",
     "url": "/Henry-s-Projects/e-commerce-client/static/css/main.1336043c.chunk.css"
   },
   {
-    "revision": "007ef24a95834c96db31",
-    "url": "/Henry-s-Projects/e-commerce-client/static/js/main.4a2200b8.chunk.js"
+    "revision": "3988848686c5c11087f4",
+    "url": "/Henry-s-Projects/e-commerce-client/static/js/main.190b75f2.chunk.js"
   },
   {
     "revision": "0694f22153d5d525c990",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/Henry-s-Projects/e-commerce-client/static/js/2.79e08384.chunk.js"
   },
   {
-    "revision": "8b9f2f2de95a5e82d4bf6a45b784bed7",
+    "revision": "25c7d6d9bb5eacd2c386e0f6f3bbb29e",
     "url": "/Henry-s-Projects/e-commerce-client/index.html"
   }
 ];
