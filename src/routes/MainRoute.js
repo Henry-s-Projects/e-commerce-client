@@ -7,8 +7,6 @@ import DetailProduct from '../components/mainpages/detailProduct/DetailProduct';
 import Products from '../components/mainpages/products/Products';
 import NotFound from '../components/mainpages/utils/notFound/NotFound';
 import { GlobalState } from '../GlobalState';
-import OrderHistory from '../components/mainpages/history/OrderHistory';
-import OrderDetail from '../components/mainpages/history/OrderDetail';
 
 function MainRoute() {
   const state = useContext(GlobalState);
@@ -24,14 +22,6 @@ function MainRoute() {
         element={isLogged ? <NotFound /> : <Register />}
       />
       <Route path="/cart" element={<Cart />} />
-      <Route
-        path="/history"
-        element={isLogged ? <OrderHistory /> : <NotFound />}
-      />
-      <Route
-        path="/history/:id"
-        element={isLogged ? <OrderDetail /> : <NotFound />}
-      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
