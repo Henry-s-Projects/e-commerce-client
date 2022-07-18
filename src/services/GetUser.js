@@ -38,16 +38,29 @@ function GetUser(token) {
   useEffect(() => {
     if (token) {
       const getHistory = async () => {
-        const res = await axios.get(
-          process.env.REACT_APP_API_URL + 'user/history',
-          { headers: { Authorization: token } },
-          { withCredentials: true }
-        );
-        setHistory(res.data.payload);
+        if (isAdmin) {
+          const res = await axios.get(
+            process.env.REACT_APP_API_URL + 'payment',
+            {
+              headers: { Authorization: token },
+            },
+            {
+              withCredentials: true,
+            }
+          );
+          setHistory(res.data.payload);
+        } else {
+          const res = await axios.get(
+            process.env.REACT_APP_API_URL + 'user/history',
+            { headers: { Authorization: token } },
+            { withCredentials: true }
+          );
+          setHistory(res.data.payload);
+        }
       };
       getHistory();
     }
-  }, [token, callback]);
+  }, [token, callback, isAdmin]);
 
   useEffect(() => {
     if (token) {

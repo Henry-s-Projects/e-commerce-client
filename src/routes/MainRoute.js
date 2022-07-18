@@ -9,10 +9,12 @@ import NotFound from '../components/mainpages/utils/notFound/NotFound';
 import { GlobalState } from '../GlobalState';
 import OrderHistory from '../components/mainpages/history/OrderHistory';
 import OrderDetail from '../components/mainpages/history/OrderDetail';
+import Categories from '../components/mainpages/categories/Categories';
 
 function MainRoute() {
   const state = useContext(GlobalState);
   const [isLogged] = state.userAPI.isLogged;
+  const [isAdmin] = state.userAPI.isAdmin;
 
   return (
     <Routes>
@@ -27,6 +29,10 @@ function MainRoute() {
       <Route
         path="/history"
         element={isLogged ? <OrderHistory /> : <NotFound />}
+      />
+      <Route
+        path="/category"
+        element={isAdmin ? <Categories /> : <NotFound />}
       />
       <Route
         path="/history/:id"

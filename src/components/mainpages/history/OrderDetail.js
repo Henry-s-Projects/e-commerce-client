@@ -73,7 +73,9 @@ function OrderDetail() {
             <td></td>
             <td></td>
             <td></td>
-            <td style={{ color: 'crimson' }}>$ {totalPrice}</td>
+            <td style={{ color: 'crimson', fontWeight: 'bold' }}>
+              $ {totalPrice}
+            </td>
           </tr>
         </tbody>
       </table>

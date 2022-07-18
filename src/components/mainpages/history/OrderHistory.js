@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 function OrderHistory() {
   const state = useContext(GlobalState);
   const [history] = state.userAPI.history;
+  const [isAdmin] = state.userAPI.isAdmin;
 
   return (
     <div className="history-page">
@@ -30,7 +31,9 @@ function OrderHistory() {
           fontWeight: 'bold',
         }}
       >
-        You have {history.length} ordered
+        {isAdmin
+          ? `There are  ${history.length}  orders`
+          : `You have  ${history.length}  ordered`}
       </TypoGraphy>
 
       <div>
