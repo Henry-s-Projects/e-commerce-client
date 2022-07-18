@@ -21,7 +21,13 @@ function Register() {
       toast.warn('Please fill in all fields');
     } else {
       try {
-        const res = await axios.post(API_URL, { ...user });
+        const res = await axios.post(
+          API_URL,
+          { ...user },
+          {
+            withCredentials: true,
+          }
+        );
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('firstLogin', true);
         window.location.href = '/';

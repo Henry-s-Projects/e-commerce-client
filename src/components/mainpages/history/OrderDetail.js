@@ -7,11 +7,14 @@ function OrderDetail() {
   const state = useContext(GlobalState);
   const [history] = state.userAPI.history;
   const [orderDetails, setOrderDetails] = useState([]);
+  let totalPrice = 0;
 
   useEffect(() => {
     if (params.id) {
       const historyItem = history.find((item) => item._id === params.id);
-      setOrderDetails(historyItem);
+      if (typeof historyItem !== 'undefined') {
+        setOrderDetails(historyItem);
+      }
     }
   }, [params.id, history]);
 
@@ -36,6 +39,41 @@ function OrderDetail() {
             </td>
             <td>{orderDetails.address.postal_code}</td>
             <td>{orderDetails.address.country_code}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table style={{ margin: '50px 0' }}>
+        <thead>
+          <tr>
+            <th>Ordinal Number</th>
+            <th>Product Image</th>
+            <th>Products</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orderDetails.cart.map((item, index) => {
+            totalPrice += item.price * item.quantity;
+            return (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <img src={item.images.url} alt="Product image" />
+                </td>
+                <td>{item.title}</td>
+                <td>{item.quantity}</td>
+                <td>$ {item.price * item.quantity}</td>
+              </tr>
+            );
+          })}
+          <tr>
+            <td style={{ fontWeight: 'bold', color: 'crimson' }}>Total</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style={{ color: 'crimson' }}>$ {totalPrice}</td>
           </tr>
         </tbody>
       </table>
