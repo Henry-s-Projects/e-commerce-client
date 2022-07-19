@@ -19,7 +19,6 @@ function Cart() {
     product_id: '',
   });
   const [token] = state.token;
-  const [callback, setCallback] = state.userAPI.callback;
 
   const handleClickOpen = (id) => {
     setOpen({ status: true, product_id: id });
@@ -105,7 +104,6 @@ function Cart() {
 
     setCart([]);
     addToCart([]);
-    setCallback(!callback);
     toast.success('Payment Successful');
   };
 

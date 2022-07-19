@@ -9,7 +9,6 @@ function GetUser(token) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [cart, setCart] = useState([]);
   const [history, setHistory] = useState([]);
-  const [callback, setCallback] = useState(false);
 
   const addCart = async (product) => {
     if (!isLogged) {
@@ -34,33 +33,6 @@ function GetUser(token) {
       return;
     }
   };
-
-  useEffect(() => {
-    if (token) {
-      const getHistory = async () => {
-        if (isAdmin) {
-          const res = await axios.get(
-            process.env.REACT_APP_API_URL + 'payment',
-            {
-              headers: { Authorization: token },
-            },
-            {
-              withCredentials: true,
-            }
-          );
-          setHistory(res.data.payload);
-        } else {
-          const res = await axios.get(
-            process.env.REACT_APP_API_URL + 'user/history',
-            { headers: { Authorization: token } },
-            { withCredentials: true }
-          );
-          setHistory(res.data.payload);
-        }
-      };
-      getHistory();
-    }
-  }, [token, callback, isAdmin]);
 
   useEffect(() => {
     if (token) {
@@ -92,7 +64,6 @@ function GetUser(token) {
     cart: [cart, setCart],
     addCart: addCart,
     history: [history, setHistory],
-    callback: [callback, setCallback],
   };
 }
 

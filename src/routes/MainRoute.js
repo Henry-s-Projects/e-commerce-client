@@ -10,6 +10,7 @@ import { GlobalState } from '../GlobalState';
 import OrderHistory from '../components/mainpages/history/OrderHistory';
 import OrderDetail from '../components/mainpages/history/OrderDetail';
 import Categories from '../components/mainpages/categories/Categories';
+import CreateProduct from '../components/mainpages/createProduct/CreateProduct';
 
 function MainRoute() {
   const state = useContext(GlobalState);
@@ -33,6 +34,10 @@ function MainRoute() {
       <Route
         path="/category"
         element={isAdmin ? <Categories /> : <NotFound />}
+      />
+      <Route
+        path="/create_product"
+        element={isAdmin ? <CreateProduct /> : <NotFound />}
       />
       <Route
         path="/history/:id"

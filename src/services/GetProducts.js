@@ -7,7 +7,9 @@ function GetProducts() {
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
-    const response = await axios.get(API_URL);
+    const response = await axios.get(API_URL, {
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    });
     setProducts(response.data.payload);
   };
 

@@ -1,12 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GlobalState } from '../../../GlobalState';
 import TypoGraphy from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function OrderHistory() {
   const state = useContext(GlobalState);
-  const [history] = state.userAPI.history;
+  const [history, setHistory] = state.userAPI.history;
   const [isAdmin] = state.userAPI.isAdmin;
+  const [token] = state.token;
+
+  useEffect(() => {
+    if (token) {
+      const getHistory = async () => {
+        if (isAdmin) {
+          const res = await axios.get(
+            process.env.REACT_APP_API_URL + 'payment',
+            {
+              headers: { Authorization: token },
+            },
+            {
+              withCredentials: true,
+            }
+          );
+          setHistory(res.data.payload);
+        } else {
+          const res = await axios.get(
+            process.env.REACT_APP_API_URL + 'user/history',
+            { headers: { Authorization: token } },
+            { withCredentials: true }
+          );
+          setHistory(res.data.payload);
+        }
+      };
+      getHistory();
+    }
+  }, [token, isAdmin]);
 
   return (
     <div className="history-page">
@@ -14,7 +43,6 @@ function OrderHistory() {
         variant="h3"
         sx={{
           textAlign: 'center',
-          marginTop: '20px',
           textTransform: 'uppercase',
           fontWeight: 'bold',
         }}
