@@ -1,11 +1,11 @@
-import React, { useContext, useInsertionEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GlobalState } from '../../../GlobalState';
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import { Button, CircularProgress, MenuItem, Typography } from '@mui/material';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { toast } from 'react-toastify';
 import { Box } from '@mui/system';
+import { useParams } from 'react-router-dom';
 
 const initialProduct = {
   product_id: '',
@@ -25,31 +25,69 @@ function CreateProduct() {
   const [isAdmin] = state.userAPI.isAdmin;
   const [token] = state.token;
   const [products, setProducts] = state.productsAPI.products;
+  const [onEdit, setOnEdit] = useState(false);
+
+  const params = useParams();
+
+  useEffect(() => {
+    if (params.id) {
+      const itemProduct = products.find((item) => item._id === params.id);
+      if (typeof itemProduct !== 'undefined') {
+        setProduct(itemProduct);
+        setImages(itemProduct.images);
+        setOnEdit(true);
+      }
+    } else {
+      setProduct(initialProduct);
+      setImages(false);
+      setOnEdit(false);
+    }
+  }, [params.id, products]);
 
   const styleUpload = {
     display: images ? 'block' : 'none',
   };
 
-  const createProduct = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (!isAdmin) return toast.warn('You are not admin');
       if (!images) return toast.warn('Please upload images');
-      const res = await axios.post(
-        process.env.REACT_APP_API_URL + 'product',
-        { ...product, images },
-        {
-          headers: { Authorization: token, 'Access-Control-Allow-Origin': '*' },
-        },
-        {
-          withCreditentials: true,
-        }
-      );
-      console.log(res.data.payload);
+      if (!onEdit) {
+        const res = await axios.post(
+          process.env.REACT_APP_API_URL + 'product',
+          { ...product, images },
+          {
+            headers: {
+              Authorization: token,
+              'Access-Control-Allow-Origin': '*',
+            },
+          },
+          {
+            withCreditentials: true,
+          }
+        );
+        setProducts([...products, res.data.payload]);
+        toast.success('Product created');
+      } else {
+        const res = await axios.put(
+          process.env.REACT_APP_API_URL + 'product/' + params.id,
+          { ...product, images },
+          {
+            headers: {
+              Authorization: token,
+              'Access-Control-Allow-Origin': '*',
+            },
+          },
+          {
+            withCreditentials: true,
+          }
+        );
+        toast.success(res.data.msg);
+        setProducts(res.data.payload);
+      }
       setProduct(initialProduct);
       setImages(false);
-      setProducts([...products, res.data.payload]);
-      toast.success('Product created');
       setTimeout(() => {
         window.location.href = '/';
       }, 2500);
@@ -137,7 +175,7 @@ function CreateProduct() {
           marginTop: '40px',
         }}
       >
-        Create Product
+        {params.id ? 'Edit Product' : 'Create Product'}
       </Typography>
       <div className="create_product">
         <div className="upload">
@@ -169,6 +207,7 @@ function CreateProduct() {
               required
               sx={{ width: '500px' }}
               onChange={handleChangeInput}
+              disabled={params.id ? true : false}
             />
           </div>
           <div className="row">
@@ -235,11 +274,11 @@ function CreateProduct() {
           </div>
           <Button
             type="submit"
-            onClick={createProduct}
+            onClick={handleSubmit}
             variant="contained"
             sx={{ float: 'right' }}
           >
-            Create
+            {params.id ? 'Update' : 'Create'}
           </Button>
         </form>
       </div>

@@ -40,6 +40,10 @@ function MainRoute() {
         element={isAdmin ? <CreateProduct /> : <NotFound />}
       />
       <Route
+        path="/edit_product/:id"
+        element={isAdmin ? <CreateProduct /> : <NotFound />}
+      />
+      <Route
         path="/history/:id"
         element={isLogged ? <OrderDetail /> : <NotFound />}
       />
