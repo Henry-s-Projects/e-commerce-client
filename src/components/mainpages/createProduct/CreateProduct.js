@@ -224,6 +224,7 @@ function CreateProduct() {
             <TextField
               label="Price"
               name="price"
+              type={'number'}
               value={product.price}
               required
               sx={{ width: '500px' }}

@@ -1,18 +1,49 @@
-import React, { useContext } from 'react';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  Typography,
+} from '@mui/material';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GlobalState } from '../../../../GlobalState';
 
-function ButtonRender({ product }) {
+function ButtonRender({ product, deleteProduct, isAdmin }) {
   const state = useContext(GlobalState);
-  const [isAdmin] = state.userAPI.isAdmin;
   const addCart = state.userAPI.addCart;
+  const [openPopup, setOpenPopup] = useState(false);
+
+  const handleOpen = () => {
+    setOpenPopup(true);
+  };
+
+  const handleClose = () => {
+    setOpenPopup(false);
+  };
+
   return (
     <div className="row_btn">
       {isAdmin ? (
         <>
-          <Link id="btn_buy" to="#!">
+          <Link id="btn_buy" to="#!" onClick={handleOpen}>
             Delete
           </Link>
+          <Dialog open={openPopup} onClose={handleClose}>
+            <DialogTitle>
+              <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                Do you want to delete this product?
+              </Typography>
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={handleClose} variant="text">
+                No
+              </Button>
+              <Button onClick={() => deleteProduct()} variant="contained">
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>
           <Link id="btn_view" to={`/edit_product/${product._id}`}>
             Edit
           </Link>

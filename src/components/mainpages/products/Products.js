@@ -6,8 +6,9 @@ import Box from '@mui/material/Box';
 
 function Products() {
   const state = useContext(GlobalState);
-  const [products] = state.productsAPI.products;
+  const [products, setProducts] = state.productsAPI.products;
   const [isAdmin] = state.userAPI.isAdmin;
+  const [token] = state.token;
 
   return (
     <>
@@ -18,6 +19,8 @@ function Products() {
               key={product._id}
               product={product}
               isAdmin={isAdmin}
+              token={token}
+              setProducts={setProducts}
             />
           );
         })}
