@@ -3,7 +3,8 @@ import ButtonRender from './ButtonRender';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { Box } from '@mui/system';
-import { CircularProgress } from '@mui/material';
+import { Checkbox, CircularProgress } from '@mui/material';
+import { blue, pink } from '@mui/material/colors';
 
 function ProductItem({
   product,
@@ -39,10 +40,17 @@ function ProductItem({
   return (
     <div className="product_card">
       {isAdmin && (
-        <input
-          type="checkbox"
+        <Checkbox
           checked={product.checked}
           onChange={handleChecked}
+          sx={{
+            position: 'absolute',
+            right: '15px',
+            top: '15px',
+            width: '25px',
+            height: '25px',
+            '& .MuiSvgIcon-root': { fontSize: 30 },
+          }}
         />
       )}
       <img src={product.images.url} alt="product img" />

@@ -3,9 +3,14 @@
   overflow: hidden;
   height: 500px;
   padding: 15px;
-  box-shadow: 0 0 15px #ddd;
+  box-shadow: 0 0 10px #ddd;
   margin: 10px 0;
   position: relative;
+}
+
+.product_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgb(187, 182, 182);
 }
 
 .product_card img {

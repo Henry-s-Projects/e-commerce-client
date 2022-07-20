@@ -13,3 +13,21 @@
   float: right;
   margin: 20px;
 }
+
+/* Filter Menu */
+.filter_menu {
+  width: 100%;
+  min-height: 40px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+/* Load More */
+.load_more {
+  text-align: center;
+  padding-bottom: 20px;
+}

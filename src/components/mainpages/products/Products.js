@@ -13,6 +13,8 @@ import {
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Filters from './Filters';
+import LoadMore from './LoadMore';
 
 function Products() {
   const state = useContext(GlobalState);
@@ -103,6 +105,7 @@ function Products() {
 
   return (
     <>
+      <Filters />
       {isAdmin && (
         <div className="delete-all">
           <Button
@@ -167,6 +170,7 @@ function Products() {
           );
         })}
       </div>
+      <LoadMore />
       {products.length === 0 && (
         <Box
           sx={{ alignItems: 'center', paddingLeft: '46%', paddingTop: '50px' }}

@@ -87,6 +87,7 @@ function Categories() {
   };
 
   const deleteCategory = async () => {
+    setOpenPopup(false);
     try {
       await axios.delete(
         process.env.REACT_APP_API_URL + 'category/' + id,
@@ -105,7 +106,6 @@ function Categories() {
         }
       });
       setCategories(newCategories);
-      setOpenPopup(false);
       setId('');
     } catch (error) {
       toast.error(error.response.data.msg);
@@ -122,13 +122,13 @@ function Categories() {
           onChange={(e) => setCategory(e.target.value)}
         />
         <Button type="submit" onClick={submitCategory} variant="contained">
-          {onEdit ? 'Update' : 'Save'}
+          {onEdit ? 'Update' : 'Create'}
         </Button>
       </form>
       <div className="col">
         {categories.map((item) => (
           <div className="row" key={item._id}>
-            <p>{item.name}</p>
+            <Typography sx={{ marginRight: '10px' }}>{item.name}</Typography>
             <div>
               <Button
                 variant="outlined"
@@ -144,24 +144,24 @@ function Categories() {
               >
                 Delete
               </Button>
-              <Dialog open={openPopup} onClose={handleClose}>
-                <DialogTitle>
-                  <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                    Do you want to delete this category?
-                  </Typography>
-                </DialogTitle>
-                <DialogActions>
-                  <Button onClick={handleClose} variant="text">
-                    No
-                  </Button>
-                  <Button onClick={() => deleteCategory()} variant="contained">
-                    Yes
-                  </Button>
-                </DialogActions>
-              </Dialog>
             </div>
           </div>
         ))}
+        <Dialog open={openPopup} onClose={handleClose}>
+          <DialogTitle>
+            <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+              Do you want to delete this category?
+            </Typography>
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClose} variant="text">
+              No
+            </Button>
+            <Button onClick={() => deleteCategory()} variant="contained">
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );

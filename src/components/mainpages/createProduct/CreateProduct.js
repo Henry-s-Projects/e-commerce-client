@@ -48,11 +48,25 @@ function CreateProduct() {
     display: images ? 'block' : 'none',
   };
 
+  const checkProductFill = () => {
+    if (
+      product.title === '' ||
+      product.description === '' ||
+      product.price === '' ||
+      product.content === '' ||
+      product.category === ''
+    ) {
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (!isAdmin) return toast.warn('You are not admin');
       if (!images) return toast.warn('Please upload images');
+      if (!checkProductFill()) return toast.warn('Please fill all fields');
       if (!onEdit) {
         const res = await axios.post(
           process.env.REACT_APP_API_URL + 'product',
