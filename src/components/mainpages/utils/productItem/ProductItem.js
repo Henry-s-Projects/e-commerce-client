@@ -5,50 +5,22 @@ import axios from 'axios';
 import { Box } from '@mui/system';
 import { CircularProgress } from '@mui/material';
 
-function ProductItem({ product, isAdmin, token, setProducts }) {
-  const [loading, setLoading] = useState(false);
-
-  const handleChecked = (e) => {};
-
-  const deleteProduct = async () => {
-    try {
-      if (!isAdmin) return toast.warn('You are not admin');
-      setLoading(true);
-
-      const destroyImg = await axios.post(
-        process.env.REACT_APP_API_URL + 'product/destroy',
-        {
-          public_id: product.images.public_id,
-        },
-        {
-          headers: {
-            Authorization: token,
-            'Access-Control-Allow-Origin': '*',
-          },
-        },
-        {
-          withCreditentials: true,
-        }
-      );
-
-      const deleteProduct = await axios.delete(
-        process.env.REACT_APP_API_URL + 'product/' + product._id,
-        {
-          headers: {
-            Authorization: token,
-            'Access-Control-Allow-Origin': '*',
-          },
-        },
-        {
-          withCreditentials: true,
-        }
-      );
-      setLoading(false);
-      toast.success(deleteProduct.data.msg);
-      setProducts(deleteProduct.data.payload);
-    } catch (error) {
-      toast.error(error.response.data.msg);
-    }
+function ProductItem({
+  product,
+  isAdmin,
+  token,
+  products,
+  setProducts,
+  deleteProduct,
+  loading,
+  setCheck,
+}) {
+  const handleChecked = async () => {
+    const newProducts = [...products];
+    const index = newProducts.findIndex((item) => item._id === product._id);
+    newProducts[index].checked = !newProducts[index].checked;
+    setProducts(newProducts);
+    setCheck(newProducts[index].checked);
   };
 
   if (loading)

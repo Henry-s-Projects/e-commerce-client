@@ -8,3 +8,8 @@
 
 /* Product Item */
 @import url(../../mainpages/utils/productItem/productItem.css);
+
+.delete-all {
+  float: right;
+  margin: 20px;
+}

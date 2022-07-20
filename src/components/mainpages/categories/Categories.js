@@ -121,7 +121,7 @@ function Categories() {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
-        <Button type="submit" onClick={submitCategory} variant="outlined">
+        <Button type="submit" onClick={submitCategory} variant="contained">
           {onEdit ? 'Update' : 'Save'}
         </Button>
       </form>
@@ -137,7 +137,11 @@ function Categories() {
               >
                 Edit
               </Button>
-              <Button variant="outlined" onClick={() => handleOpenPopup(item)}>
+              <Button
+                variant="contained"
+                onClick={() => handleOpenPopup(item)}
+                sx={{ ':hover': { background: 'red' }, background: 'red' }}
+              >
                 Delete
               </Button>
               <Dialog open={openPopup} onClose={handleClose}>

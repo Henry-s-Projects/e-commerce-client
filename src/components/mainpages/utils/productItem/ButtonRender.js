@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { GlobalState } from '../../../../GlobalState';
 
 function ButtonRender({ product, deleteProduct, isAdmin }) {
@@ -20,6 +21,17 @@ function ButtonRender({ product, deleteProduct, isAdmin }) {
 
   const handleClose = () => {
     setOpenPopup(false);
+  };
+
+  const handleDelete = async () => {
+    try {
+      if (!isAdmin) return toast.warn('You are not admin');
+      setOpenPopup(false);
+      await deleteProduct(product._id, product.images.public_id);
+      toast.success('Product deleted');
+    } catch (error) {
+      toast.error(error.response.data.msg);
+    }
   };
 
   return (
@@ -39,7 +51,7 @@ function ButtonRender({ product, deleteProduct, isAdmin }) {
               <Button onClick={handleClose} variant="text">
                 No
               </Button>
-              <Button onClick={() => deleteProduct()} variant="contained">
+              <Button onClick={handleDelete} variant="contained">
                 Yes
               </Button>
             </DialogActions>
