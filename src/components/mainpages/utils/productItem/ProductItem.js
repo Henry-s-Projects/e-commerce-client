@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ButtonRender from './ButtonRender';
-import { toast } from 'react-toastify';
-import axios from 'axios';
 import { Box } from '@mui/system';
 import { Checkbox, CircularProgress } from '@mui/material';
-import { blue, pink } from '@mui/material/colors';
 
 function ProductItem({
   product,

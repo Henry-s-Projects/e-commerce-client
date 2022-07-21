@@ -1,4 +1,4 @@
-import { MenuItem, TextField, Typography } from '@mui/material';
+import { MenuItem, TextField } from '@mui/material';
 import React, { useContext } from 'react';
 import { GlobalState } from '../../../GlobalState';
 
@@ -8,7 +8,6 @@ function Filters() {
   const [category, setCategory] = state.productsAPI.category;
   const [sort, setSort] = state.productsAPI.sort;
   const [search, setSearch] = state.productsAPI.search;
-  const [page, setPage] = state.productsAPI.page;
 
   const handleCategory = (e) => {
     setCategory(e.target.value);

@@ -22,8 +22,13 @@ function Login() {
       try {
         const res = await axios.post(
           API_URL,
-          { ...user, headers: { 'Access-Control-Allow-Origin': '*' } },
-          { withCredentials: true }
+          { ...user },
+          {
+            headers: { 'Access-Control-Allow-Origin': '*' },
+          },
+          {
+            withCredentials: true,
+          }
         );
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('firstLogin', true);
