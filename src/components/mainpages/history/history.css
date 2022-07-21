@@ -23,6 +23,17 @@ td {
   text-transform: capitalize;
 }
 
+td {
+  max-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+th {
+  background-color: #4caf50;
+  color: white;
+}
+
 table a {
   color: rgb(7, 46, 221);
 }

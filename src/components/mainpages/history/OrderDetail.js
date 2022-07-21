@@ -46,11 +46,11 @@ function OrderDetail() {
       <table style={{ margin: '50px 0' }}>
         <thead>
           <tr>
-            <th>Ordinal Number</th>
-            <th>Product Image</th>
+            <th style={{ width: '17%' }}></th>
+            <th>Imagery</th>
             <th>Products</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <th style={{ width: '25%' }}>Quantity</th>
+            <th style={{ width: '17%' }}>Price</th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +59,7 @@ function OrderDetail() {
             return (
               <tr key={item._id}>
                 <td>{index + 1}</td>
-                <td>
+                <td style={{ padding: '10px 0' }}>
                   <img src={item.images.url} alt="Product image" />
                 </td>
                 <td>{item.title}</td>

@@ -10,6 +10,18 @@ import {
   Typography,
 } from '@mui/material';
 import axios from 'axios';
+import { createTheme, ThemeProvider } from '@mui/system';
+
+const theme = createTheme();
+theme.typography = {
+  fontSize: '1.2rem',
+  '@media (min-width:600px)': {
+    fontSize: '1.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2.4rem',
+  },
+};
 
 function Categories() {
   const state = useContext(GlobalState);
@@ -120,6 +132,7 @@ function Categories() {
           variant="standard"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          sx={{ marginRight: '10px' }}
         />
         <Button type="submit" onClick={submitCategory} variant="contained">
           {onEdit ? 'Update' : 'Create'}
@@ -128,11 +141,15 @@ function Categories() {
       <div className="col">
         {categories.map((item) => (
           <div className="row" key={item._id}>
-            <Typography sx={{ marginRight: '10px' }}>{item.name}</Typography>
+            <Typography noWrap={true} sx={{ marginRight: '10px' }}>
+              {item.name}
+            </Typography>
             <div>
               <Button
                 variant="outlined"
-                sx={{ marginRight: '10px' }}
+                sx={{
+                  margin: '5px 10px 5px 0',
+                }}
                 onClick={() => editCategory(item)}
               >
                 Edit
@@ -140,7 +157,11 @@ function Categories() {
               <Button
                 variant="contained"
                 onClick={() => handleOpenPopup(item)}
-                sx={{ ':hover': { background: 'red' }, background: 'red' }}
+                sx={{
+                  margin: '5px 0',
+                  ':hover': { background: 'red' },
+                  background: 'red',
+                }}
               >
                 Delete
               </Button>

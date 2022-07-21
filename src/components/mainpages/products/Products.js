@@ -108,11 +108,7 @@ function Products() {
       <Filters />
       {isAdmin && (
         <div className="delete-all">
-          <Button
-            variant="outlined"
-            onClick={checkAll}
-            sx={{ margin: '0 10px' }}
-          >
+          <Button variant="outlined" onClick={checkAll}>
             Select All
           </Button>
           <Button
@@ -126,7 +122,6 @@ function Products() {
             variant="contained"
             onClick={handleOpen}
             sx={{
-              margin: '0 10px',
               background: 'red',
               ':hover': {
                 background: 'red',

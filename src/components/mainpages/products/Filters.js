@@ -23,7 +23,7 @@ function Filters() {
           name="category"
           select
           value={category}
-          sx={{ width: '300px' }}
+          sx={{ width: '300px', marginTop: '10px' }}
           onChange={handleCategory}
         >
           <MenuItem value="" key={1}>
@@ -37,19 +37,13 @@ function Filters() {
         </TextField>
       </div>
 
-      <TextField
-        value={search}
-        placeholder="Enter your search!"
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
       <div className="row">
         <TextField
           label="Sort By:"
           name="sort"
           select
           value={sort}
-          sx={{ width: '300px' }}
+          sx={{ width: '300px', margin: '0 28px', marginTop: '10px' }}
           onChange={(e) => setSort(e.target.value)}
         >
           <MenuItem value="sort=-createdAt">Newest</MenuItem>
@@ -58,6 +52,12 @@ function Filters() {
           <MenuItem value="sort=price">Price: Low - High</MenuItem>
         </TextField>
       </div>
+      <TextField
+        value={search}
+        placeholder="Enter your search!"
+        onChange={(e) => setSearch(e.target.value)}
+        sx={{ width: '300px', marginTop: '10px' }}
+      />
     </div>
   );
 }

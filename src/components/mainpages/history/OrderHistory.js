@@ -68,9 +68,9 @@ function OrderHistory() {
         <table>
           <thead>
             <tr>
-              <th>Payment ID</th>
-              <th>Date of Purchased</th>
-              <th></th>
+              <th style={{ width: '53%' }}>Payment ID</th>
+              <th style={{ width: '30%' }}>Date of Purchased</th>
+              <th style={{ width: '17%' }}></th>
             </tr>
           </thead>
           <tbody>

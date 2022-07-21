@@ -46,7 +46,7 @@ function DetailProduct() {
           </Link>
         </div>
       </div>
-      <div>
+      <div style={{ marginTop: '25px' }}>
         <h2>Related products</h2>
         <div className="products">
           {products.map((product) => {

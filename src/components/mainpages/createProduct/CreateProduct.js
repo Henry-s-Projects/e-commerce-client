@@ -219,7 +219,7 @@ function CreateProduct() {
               name="product_id"
               value={product.product_id}
               required
-              sx={{ width: '500px' }}
+              sx={{ width: '100%', maxWidth: '500px' }}
               onChange={handleChangeInput}
               disabled={params.id ? true : false}
             />
@@ -230,7 +230,7 @@ function CreateProduct() {
               name="title"
               value={product.title}
               required
-              sx={{ width: '500px' }}
+              sx={{ width: '100%', maxWidth: '500px' }}
               onChange={handleChangeInput}
             />
           </div>
@@ -241,7 +241,7 @@ function CreateProduct() {
               type={'number'}
               value={product.price}
               required
-              sx={{ width: '500px' }}
+              sx={{ width: '100%', maxWidth: '500px' }}
               onChange={handleChangeInput}
             />
           </div>
@@ -253,7 +253,7 @@ function CreateProduct() {
               required
               rows={5}
               multiline
-              sx={{ width: '500px' }}
+              sx={{ width: '100%', maxWidth: '500px' }}
               onChange={handleChangeInput}
             />
           </div>
@@ -265,7 +265,7 @@ function CreateProduct() {
               required
               rows={5}
               multiline
-              sx={{ width: '500px' }}
+              sx={{ width: '100%', maxWidth: '500px' }}
               onChange={handleChangeInput}
             />
           </div>
@@ -277,7 +277,7 @@ function CreateProduct() {
               value={product.category}
               required
               helperText="Please select a category"
-              sx={{ width: '500px' }}
+              sx={{ width: '100%', maxWidth: '500px' }}
               onChange={handleChangeInput}
             >
               {categories.map((item) => (
