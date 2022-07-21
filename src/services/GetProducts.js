@@ -18,6 +18,9 @@ function GetProducts() {
           `?itemsPerPage=${page * 9}&${category}&${sort}&title=${search}`,
         {
           headers: { 'Access-Control-Allow-Origin': '*' },
+        },
+        {
+          withCredentials: true,
         }
       );
       setProducts(response.data.payload);
