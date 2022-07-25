@@ -13,13 +13,19 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const firstLogin = localStorage.getItem('firstLogin');
+    const token = localStorage.getItem('token');
     if (firstLogin) {
-      const refreshToken = async () => {
-        const res = await axios.get(API_URL, { withCredentials: true });
-        setToken(res.data.accessToken);
-        setTimeout(() => refreshToken(), 60 * 60 * 1000);
-      };
-      refreshToken();
+      setToken(token);
+      // const refreshToken = async () => {
+      //   const res = await axios.get(
+      //     API_URL,
+      //     { headers: { Authorization: ref_token } },
+      //     { withCredentials: true }
+      //   );
+      //   setToken(res.data.accessToken);
+      //   setTimeout(() => refreshToken(), 60 * 60 * 1000);
+      // };
+      // refreshToken();
     }
   }, []);
 
