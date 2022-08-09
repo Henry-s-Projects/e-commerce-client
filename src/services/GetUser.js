@@ -6,6 +6,7 @@ const API_URL = process.env.REACT_APP_API_URL + 'user/getInfo';
 
 function GetUser(token) {
   const [isLogged, setIsLogged] = useState(false);
+  const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
   const [cart, setCart] = useState([]);
   const [history, setHistory] = useState([]);
@@ -48,7 +49,7 @@ function GetUser(token) {
           res.data.payload.role === 'admin'
             ? setIsAdmin(true)
             : setIsAdmin(false);
-
+          setUser(res.data.payload);
           setCart(res.data.payload.cart);
         } catch (error) {
           toast.error(error.response.data.msg);
@@ -64,6 +65,7 @@ function GetUser(token) {
     cart: [cart, setCart],
     addCart: addCart,
     history: [history, setHistory],
+    user: [user, setUser],
   };
 }
 

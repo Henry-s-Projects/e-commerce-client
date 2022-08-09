@@ -1,19 +1,27 @@
-import { Button } from '@mui/material';
+import { Button, Pagination } from '@mui/material';
 import React, { useContext } from 'react';
 import { GlobalState } from '../../../GlobalState';
 
 function LoadMore() {
   const state = useContext(GlobalState);
   const [page, setPage] = state.productsAPI.page;
-  const [result] = state.productsAPI.result;
+  const [amountPage] = state.productsAPI.amountPage;
 
   return (
     <div className="load_more">
-      {result < page * 9 ? (
-        ''
-      ) : (
-        <Button onClick={() => setPage(page + 1)}>Load more</Button>
-      )}
+      <Pagination
+        count={amountPage}
+        shape="rounded"
+        showFirstButton
+        showLastButton
+        onChange={(e, value) => setPage(value)}
+        size="large"
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '1rem',
+        }}
+      />
     </div>
   );
 }

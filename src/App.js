@@ -4,6 +4,7 @@ import { DataProvider } from './GlobalState';
 import Header from './components/headers/Header';
 import MainRoute from './routes/MainRoute';
 import { ToastContainer } from 'react-toastify';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <div className="App">
           <Header />
           <MainRoute />
+          <Footer />
         </div>
         <ToastContainer
           position="top-right"

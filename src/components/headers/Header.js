@@ -15,6 +15,7 @@ function Header() {
   const [isAdmin] = state.userAPI.isAdmin;
   const [cart] = state.userAPI.cart;
   const [menu, setMenu] = useState(false);
+  const [user, setUser] = state.userAPI.user;
 
   const logoutUser = async () => {
     await axios.get(API_URL, { withCredentials: true });
@@ -43,7 +44,7 @@ function Header() {
         </li>
         <li onClick={() => setMenu(!menu)}>
           <Link to="/" onClick={logoutUser}>
-            Logout
+            {user.name}, Logout
           </Link>
         </li>
       </>
