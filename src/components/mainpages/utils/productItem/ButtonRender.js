@@ -63,7 +63,7 @@ function ButtonRender({ product, deleteProduct, isAdmin }) {
       ) : (
         <>
           <Link id="btn_buy" to="#!" onClick={() => addCart(product)}>
-            Buy
+            Add to cart
           </Link>
           <Link id="btn_view" to={`/detail/${product._id}`}>
             View

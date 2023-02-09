@@ -62,10 +62,16 @@
 #btn_buy {
   background-color: #555;
   margin-right: 5px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 #btn_view {
   background-color: teal;
   margin-right: 5px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 .product_card input {
   position: absolute;

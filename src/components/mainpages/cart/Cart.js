@@ -129,8 +129,8 @@ function Cart() {
               <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
                 $ {product.price * product.quantity}
               </Typography>
-              <p>{product.description}</p>
-              <p>{product.content}</p>
+              <p style={{ fontSize: '18px' }}>{product.description}</p>
+              <p style={{ fontSize: '18px' }}>{product.content}</p>
               <div className="amount">
                 <button onClick={() => decrement(product._id)}>
                   <RemoveIcon />

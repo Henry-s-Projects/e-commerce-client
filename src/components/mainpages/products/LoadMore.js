@@ -14,7 +14,10 @@ function LoadMore() {
         shape="rounded"
         showFirstButton
         showLastButton
-        onChange={(e, value) => setPage(value)}
+        onChange={(e, value) => {
+          window.scrollTo(0, 0);
+          setPage(value);
+        }}
         size="large"
         sx={{
           display: 'flex',

@@ -34,9 +34,11 @@ function DetailProduct() {
           <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
             $ {detailProduct.price}
           </Typography>
-          <p>{detailProduct.description}</p>
-          <p>{detailProduct.content}</p>
-          <p>Sold: {detailProduct.sold}</p>
+          <p style={{ fontSize: '18px' }}>{detailProduct.description}</p>
+          <p style={{ fontSize: '18px' }}>{detailProduct.content}</p>
+          <p>
+            <b>Sold:</b> {detailProduct.sold}
+          </p>
           <Link
             to="/cart"
             className="cart"
