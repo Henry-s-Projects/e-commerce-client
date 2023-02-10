@@ -109,7 +109,10 @@ function Cart() {
 
   if (cart.length === 0) {
     return (
-      <TypoGraphy variant="h2" sx={{ textAlign: 'center', marginTop: '50px' }}>
+      <TypoGraphy
+        variant="h2"
+        sx={{ textAlign: 'center', marginTop: '50px', marginBottom: '650px' }}
+      >
         Cart Empty
       </TypoGraphy>
     );
@@ -170,7 +173,7 @@ function Cart() {
           </div>
         );
       })}
-      <div className="total">
+      <div className="total" style={{ marginBottom: '50px' }}>
         <TypoGraphy variant="h4" color={'crimson'} sx={{ fontWeight: 'bold' }}>
           Total: $ {total}
         </TypoGraphy>
